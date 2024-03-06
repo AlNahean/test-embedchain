@@ -47,7 +47,7 @@ function AddDataSourceForm() {
   });
   function handleDataTypeChange(value: string) {
     const selectedDataType = dataTypes.find(
-      (dataType) => dataType.value === value,
+      (dataType) => dataType.value === value
     );
     setSelectedTypeDescription(selectedDataType?.description || "");
     form.setValue("dataType", value);
@@ -231,91 +231,105 @@ function AddDataSourceForm() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        <FormField
-          control={form.control}
-          name="dataType"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Data type</FormLabel>
-              <Select
-                onValueChange={handleDataTypeChange}
-                defaultValue={field.value}
-              >
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a data type" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectGroup>
-                    {dataTypes.map((dataType) => (
-                      <SelectItem key={dataType.value} value={dataType.value}>
-                        {dataType.label}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              <FormDescription>
-                You can manage data sources in your{" "}
-                <Link href="/admin/data">data sources page</Link>.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="dataValue"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Data value</FormLabel>
-              <Textarea {...field} />
-              <FormDescription>
-                Example: {selectedTypeDescription}
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="metadata"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>(Optional) Metadata</FormLabel>
-              <Textarea {...field} />
-              <FormDescription>
-                Metadata to store. Useful for metadata filtering in RAG apps.{" "}
-                <br />
-                Enter valid JSON only.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="envVariables"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>(Optional) Environment variables</FormLabel>
-              <Textarea {...field} />
-              <FormDescription>
-                Environment variables to set for adding data source such as
-                `DROPBOX_ACCESS_TOKEN` etc. <br />
-                Enter valid JSON only. Key is the env variable name and value is
-                the env variable value.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Save</Button>
-      </form>
-    </Form>
+    <>
+      <Button
+        className=" "
+        onClick={() => {
+          console.log(form);
+          form.setValue("dataValue", "hello.pdf");
+        }}
+      >
+        Click me
+      </Button>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-2/3 space-y-6"
+        >
+          <FormField
+            control={form.control}
+            name="dataType"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Data type</FormLabel>
+                <Select
+                  onValueChange={handleDataTypeChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a data type" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectGroup>
+                      {dataTypes.map((dataType) => (
+                        <SelectItem key={dataType.value} value={dataType.value}>
+                          {dataType.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                <FormDescription>
+                  You can manage data sources in your{" "}
+                  <Link href="/admin/data">data sources page</Link>.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="dataValue"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Data value</FormLabel>
+                <Textarea {...field} />
+                <FormDescription>
+                  Example: {selectedTypeDescription}
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="metadata"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>(Optional) Metadata</FormLabel>
+                <Textarea {...field} />
+                <FormDescription>
+                  Metadata to store. Useful for metadata filtering in RAG apps.{" "}
+                  <br />
+                  Enter valid JSON only.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="envVariables"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>(Optional) Environment variables</FormLabel>
+                <Textarea {...field} />
+                <FormDescription>
+                  Environment variables to set for adding data source such as
+                  `DROPBOX_ACCESS_TOKEN` etc. <br />
+                  Enter valid JSON only. Key is the env variable name and value
+                  is the env variable value.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit">Save</Button>
+        </form>
+      </Form>
+    </>
   );
 }
 

@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   frontend:
@@ -12,7 +12,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=development
-      - NEXT_PUBLIC_API_ENDPOINT=http://backend:8000
+      - NEXT_PUBLIC_API_ENDPOINT=http://localhost:8000
     depends_on:
       - backend
 

@@ -99,7 +99,7 @@ export function MainNav({
         <CompanyLogo />
       </Link>
       <Link
-        href="/dashboard"
+        href="/admin"
         className="text-sm font-light text-muted-foreground transition-colors hover:text-primary hover:text-black"
       >
         Dashboard
